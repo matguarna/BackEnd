@@ -30,7 +30,6 @@ const hacerAlgo = () => {
   let a = 1;
   imprimir(a);
 };
-
 hacerAlgo();
 
 function sumar(sum1, sum2) {
@@ -50,4 +49,3 @@ mostrarPalabra("palabrita");
 (function mostrarPalabra2(p) {
   console.log(p);
 })("chau");
-
