@@ -68,11 +68,32 @@ mostrarPalabra("palabrita");
 })("chau");
 
 //Closure ejemplo
-function crearGritarNombre(nombre){
+function crearGritarNombre(nombre) {
   const signos = "!!!";
   return function () {
     console.log(`${nombre}${signos}`);
-  }
+  };
 }
 const gritarMatias = crearGritarNombre("matias");
 gritarMatias();
+
+//Clases
+class Cliente {
+  constructor(nombre, fechaNacimiento, direccion) {
+    this.nombre = nombre; //atributos de las instancias
+    this.fechaNacimiento = fechaNacimiento; //atributos de las instancias
+    this.direccion = direccion; //atributos de las instancias
+  }
+  //static es un atributo de la CLASE CLIENTE, no de las instancias
+  static empresa = "CoderHouse"; //atributo de la CLASE
+
+  verStringDePresentacion() {
+    return `Presentacion > nombre: ${this.nombre}`;
+  }
+}
+const cliente1 = new Cliente("Felipe", "20/01/1990", "Av. M Garcia 500");
+imprimir(cliente1); //Imprime el objeto cliente1 claves y valores. Claves son nombre, fecha, direcc, y los valores son los valores dados en cliente1
+imprimir(cliente1.nombre); //Imprime Felipe
+imprimir(cliente1.verStringDePresentacion());
+imprimir(cliente1.empresa); //indefinido, porque no es una caracteristica de cliente 1, sino de la clase en sí.
+imprimir(Cliente.empresa); //CoderHouse
