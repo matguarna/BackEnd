@@ -7,11 +7,15 @@ class Usuario {
   }
 
   getFullName() {
-    return `Nombre: ${this.nombre} ${this.apellido}`;
+    console.log(`Nombre: ${this.nombre} ${this.apellido}`);
   }
 
   addMascota(mascota) {
     this.mascotas.push(mascota);
+  }
+
+  countMascotas() {
+    console.log(`La cantidad de mascotas es: ${this.mascotas.length}`);
   }
 
   addBook(nombre, autor) {
@@ -27,14 +31,12 @@ class Usuario {
   }
 }
 
-//libros: object []
-//mascotas: string[]
-
 const usuario1 = new Usuario("Matias", "Guarna", [], ["Michel"]);
-usuario1.addMascota("Octavio"); //ok
-console.log(usuario1.mascotas); //ok
-console.log(usuario1.getFullName()); //ok
-usuario1.addBook("Moby Dick", "Herman Melville"); //ok
-usuario1.addBook("IT", "Stephen King"); //ok
-console.log(usuario1.libros); //ok
-usuario1.getBookNames(); // ok
+usuario1.getFullName();
+usuario1.addMascota("Octavio");
+console.log(usuario1.mascotas);
+usuario1.countMascotas();
+usuario1.addBook("Moby Dick", "Herman Melville");
+usuario1.addBook("IT", "Stephen King");
+console.log(usuario1.libros);
+usuario1.getBookNames();
