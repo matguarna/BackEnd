@@ -14,3 +14,5 @@ function crearSaludar() {
 }
 const saludito = crearSaludar();
 saludito("capo");
+
+friusao
