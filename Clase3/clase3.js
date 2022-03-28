@@ -81,6 +81,18 @@ for (const valor of Object.values(diccionario)) {
   console.log(valor);
 }
 
+for (const par of Object.entries(diccionario)) {
+  console.log(par);
+}
+
+for (const [clave, valor] of Object.entries(diccionario)) {
+  console.log(`Clave: ${clave}. Valor: ${valor}`);
+}
+
+//Otro ej para extraer un dato o datos de diccionario
+const { nombre, apellido } = diccionario;
+console.log(nombre, apellido);
+
 //Ej declaracion de un array
 const nums = [1, 2, 3];
 nums[20]; //Indica que nums tiene 20 posiciones
@@ -92,8 +104,21 @@ console.log(nums.length); //Imprime 7
 const letras = ["a", "b", "c"];
 const [primeraLetra, segundaLetra, terceraLetra, cuartaLetra] = letras;
 
-console.log(primeraLetra);
-console.log(segundaLetra);
-console.log(terceraLetra);
+console.log(primeraLetra);//a
+console.log(segundaLetra);//b
+console.log(terceraLetra);//c
 console.log(cuartaLetra); //Indefinido porque no existe
-console.log(letras[0]);
+console.log(letras[0]); //Imprime "a" que es la posicion 0 del array
+
+//Callbacks
+function hacerAlgotresveces(algo) {
+  algo();
+  algo();
+  algo();
+  //"algo" es el callback de la funcion "hacerAlgotresveces"
+}
+hacerAlgotresveces(() => {
+  console.log("hola");
+});
+
+//Promesas
