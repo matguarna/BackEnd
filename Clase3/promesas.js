@@ -27,3 +27,8 @@ async function main() {
       console.log(obj);
     });
 }
+
+//Esto se puede ejecutar en consola con nvm 17
+// fetch("https://catfact.ninja/fact")
+//   .then((res) => res.json())
+//   .then(({ fact }) => console.log(fact));
