@@ -1,0 +1,8 @@
+{
+  "contenidoString": "Hola soy el contenido",
+  "contenidoObj": {
+    "nombre": "Matias",
+    "apellido": "Guarna"
+  },
+  "size": 50
+}
