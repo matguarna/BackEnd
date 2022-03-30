@@ -1,1 +1,26 @@
-[{"title":"Notebook","price":500,"thumbnail":"url","id":"96184c06-a364-400a-9255-4221b5dd6fdd"},{"title":"Tablet","price":300,"thumbnail":"url","id":"1166d712-2d18-43bc-a57a-9c41f256c758"},{"title":"Celular","price":150,"thumbnail":"url","id":"4c265d61-236b-4c4a-bff4-fc285268e756"},{"title":"Iphone","price":800,"thumbnail":"url","id":"5582b6bc-83f9-4929-9933-7d2982e272dd"}]
+[
+  {
+    "title": "Notebook",
+    "price": 500,
+    "thumbnail": "url",
+    "id": "9a7cd613-3155-4e5a-8ba8-ced2f2914966"
+  },
+  {
+    "title": "Tablet",
+    "price": 300,
+    "thumbnail": "url",
+    "id": "e561f092-e684-4e58-88c2-026d54b2595f"
+  },
+  {
+    "title": "Celular",
+    "price": 150,
+    "thumbnail": "url",
+    "id": "eb834633-a190-4983-8712-522090a4cea2"
+  },
+  {
+    "title": "Iphone",
+    "price": 800,
+    "thumbnail": "url",
+    "id": "4da2dad6-c4bc-487d-9c1d-3d38cd7f2845"
+  }
+]

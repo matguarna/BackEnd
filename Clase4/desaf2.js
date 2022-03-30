@@ -5,12 +5,12 @@ class Contenedor {
   constructor(products) {
     this.products = products;
   }
-  /** @type {Array.<{title: String, price: Number, thumbnail: String, id: String}>} */
+
   products = [];
 
   async saveProduct(products) {
     this.products.push(products);
-    await fs.promises.writeFile("productos.txt", JSON.stringify(this.products));
+    await fs.promises.writeFile("productos.txt", JSON.stringify(this.products, null, 2));
     return `El producto fue asignado al ID: ${this.products.id}.`;
   }
 
@@ -24,23 +24,34 @@ class Contenedor {
   }
 
   getAll() {
-    //const all = [this.products.title];
     const allProducts = [];
     for (const dato of this.products) {
       allProducts.push(dato.title);
     }
-    console.log(`(getAll) Los archivos presentes son: ${allProducts}`);
+    console.log(`Los archivos presentes son: ${allProducts}`);
   }
 
-  deleteById(id) {
-    const productIndex = this.products.findIndex((product) => product.id === id);
-    console.log(productIndex);
-    this.products.splice(productIndex, 1);
-    console.log(``);
+  async deleteById(id) {
+    try {
+      const delId = this.products.find((producto) => producto.id === id);
+      await fs.promises.readFile("productos.txt", "utf-8");
+      const deleteIndex = this.products.findIndex((producto) => producto.id == id);
+      this.products.splice(deleteIndex, 1);
+      await fs.promises.writeFile("productos.txt", JSON.stringify(this.products, null, 2));
+      console.log(`El producto ${delId.title} ha sido eliminado`);
+    } catch (err) {
+      console.log(err);
+    }
   }
-  deleteAll() {
-    this.products = [];
-    console.log("(deleteAll) Se han eliminado todos los archivos");
+
+  async deleteAll() {
+    try {
+      this.products = [];
+      await fs.promises.writeFile("productos.txt", JSON.stringify(this.products, null, 2));
+      console.log("Se han eliminado todos los productos");
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
 
@@ -55,19 +66,6 @@ let productosTXT = [
   { title: "Celular", price: 150, thumbnail: "url", id: idProduct3 },
 ];
 
-// async function guardarArchivo() {
-//   try {
-//     await fs.promises.writeFile("info.txt", JSON.stringify(archivos, null, 2));
-//   } catch (err) {
-//     console.log(err);
-//   } finally {
-//     console.table(info);
-//   }
-// }
-// guardarArchivo();
-
-//let iphone = { title: "Iphone 13", price: 800, thumbnail: "url" };
-
 const contenedorArchivos = new Contenedor(productosTXT);
 
 //console.log(contenedorArchivos.products);
@@ -75,5 +73,6 @@ contenedorArchivos.saveProduct({ title: "Iphone", price: 800, thumbnail: "url", 
 //console.log(contenedorArchivos.products);
 contenedorArchivos.getAll(); // ok
 contenedorArchivos.getById(idProduct1); //ok
-contenedorArchivos.deleteById(idProduct1); //ok
-contenedorArchivos.getById(idProduct1); // ok
+//contenedorArchivos.deleteById(idProduct1); //ok
+//contenedorArchivos.getById(idProduct1); // ok
+//contenedorArchivos.deleteAll(); //ok
