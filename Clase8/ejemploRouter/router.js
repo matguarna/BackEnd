@@ -8,8 +8,8 @@ const app = express(); //Se utiliza express como funcion para crear el servidor.
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const routerAutos = require("./routerAutos.js");
-const routerBicicletas = require("./routerBicicletas.js");
+const routerAutos = require("./routers/routerAutos.js");
+const routerBicicletas = require("./routers/routerBicicletas.js");
 
 app.use("/api/autos", routerAutos);
 app.use("/api/bicicletas", routerBicicletas);
