@@ -1,13 +1,11 @@
 const express = require("express");
 const app = express();
 
-//app.use(express.static("public"));
-//public es el nombre de la carpeta, necesitamos crearla
-
 const { Router } = express;
 const router = Router();
 
-app.use("/api/productos", router);
+app.use("/api", router);
+app.use("/static", express.static("public"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -18,17 +16,16 @@ let productos = [
   { title: "Celular", price: 150, thumbnail: "url", id: "3" },
 ];
 
-router.get("/", (req, res) => {
+router.get("/productos", (req, res) => {
   const allProducts = [];
   for (const dato of productos) {
     allProducts.push(dato.title);
   }
   console.log(`Los archivos presentes son: ${allProducts}`);
-  //console.log(allProducts.length);
   res.send(`Los archivos presentes son: ${allProducts}`);
 });
 
-router.get("/:id", (req, res) => {
+router.get("/productos/:id", (req, res) => {
   const { params } = req;
   const byId = productos.find((producto) => producto.id == req.params.id);
   if (byId) {
@@ -40,26 +37,36 @@ router.get("/:id", (req, res) => {
   }
 });
 
-router.post("/", (req, res) => {
+router.post("/productos", (req, res) => {
   productos.push(req.body);
   // const contadorId = [];
-  // // let ultimoId;
-  // // for (const dato of productos) {
-  // //   ultimoId = contadorId.push(dato.title);
-  // // }
+  // let ultimoId;
+  // for (const dato of productos) {
+  //   ultimoId = contadorId.push(dato.title);
+  // }
   // ultimoId++;
   // console.log(contadorId.length);
   // console.log(ultimoId);
-  // console.log(productos);
+
   console.log(productos);
   console.log(req.body);
   res.send(`POST Ok. El producto asignado fue: . ID: `);
 });
 
-//app.delete("/productos/:id")
-
-app.use("/static", express.static("public"));
-//app.use("/static", express.static("files"));
+router.delete("/productos/:id", (req, res) => {
+  const { params } = req;
+  const deleteId = productos.find((producto) => producto.id == req.params.id);
+  if (deleteId) {
+    const deleteIndex = productos.findIndex((producto) => producto.id == req.params.id);
+    productos.splice(deleteIndex, 1);
+    console.log(`El producto ${deleteId.title} ha sido eliminado`);
+    console.log(productos);
+    res.send(`El producto ${deleteId.title} ha sido eliminado`);
+  } else {
+    console.log(`No existe un producto con ese ID`);
+    res.send(`No existe un producto con ese ID`);
+  }
+});
 
 const PORT = 8080;
 const server = app.listen(PORT, () => {

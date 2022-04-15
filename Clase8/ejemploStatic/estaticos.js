@@ -18,6 +18,7 @@ router.get("/personas", (req, res) => {
 
 router.post("/personas", (req, res) => {
   Personas.push(req.body);
+  console.log(req.body);
   res.send(`POST Ok \nArray: ${JSON.stringify(Personas)}`);
 });
 
