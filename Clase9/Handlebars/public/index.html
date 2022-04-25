@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Handlebars</title>
   </head>
   <body>
     <!--Espacio para inyectar el resultado-->
@@ -16,18 +16,25 @@
       const contexto = {
         nombre: "matias",
       };
-      const templateString = "<h1>{{nombre}}</h1>";
-      const templateSaludo = "<h1>Hola, {{nombre}}</h1>";
+
+      //EJEMPLO CON FETCH y plantilla extraida del servidor
+      //Trae la plantilla
+      fetch("plantillas/saludo.plantilla")
+        .then((res) => res.text())
+        .then((text) => {
+          const templateSaludo = text;
+          const generarSaludo = Handlebars.compile(templateSaludo);
+          const htmlSaludo = generarSaludo(contexto);
+          document.getElementById("saludo").innerHTML = htmlSaludo;
+        });
+
+      //Ejemplo creando plantilla
       const templateDespedida = "<h1>Chau, {{nombre}}</h1>";
       //Compila la plantilla
-      const template = Handlebars.compile(templateString);
-      const generarSaludo = Handlebars.compile(templateSaludo);
       const generarDespedida = Handlebars.compile(templateDespedida);
       //Genera el HTML
-      const htmlSaludo = generarSaludo(contexto);
       const htmlDespedida = generarDespedida(contexto);
       //Inyecta el resultado en la vista
-      document.getElementById("saludo").innerHTML = htmlSaludo;
       document.getElementById("despedida").innerHTML = htmlDespedida;
     </script>
   </body>
