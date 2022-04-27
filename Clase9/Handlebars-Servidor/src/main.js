@@ -1,17 +1,17 @@
 const express = require("express");
-const exphbs = require("express-handlebars");
+const { create } = require("express-handlebars");
 
 const app = express();
 
-const handlebarsConfig = {
+const handlebars = create({
   extname: "hbs",
   defaultLayout: "index.hbs",
-};
-//hbs son las extensiones y van a ser utilizadas con el motor exphbs(handlebarsConfig)
-app.engine("hbs", exphbs(handlebarsConfig));
+});
+//hbs son las extensiones y van a ser utilizadas con el motor handlebars
+app.engine("hbs", handlebars.engine);
 
 //Definimos la carpeta donde estan las vistas
-app.set("views", "./views");
+app.set("views", "../views");
 
 //Le pasamos la ruta y el contexto/datos con los que vamos a rellenar la plantilla
 app.get("/", (req, res) => {

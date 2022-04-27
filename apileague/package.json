@@ -1,0 +1,20 @@
+{
+  "name": "apileague",
+  "version": "1.0.0",
+  "description": "",
+  "main": "league.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fightmegg/riot-api": "^0.0.8",
+    "fs-extra": "^10.1.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.182"
+  }
+}
