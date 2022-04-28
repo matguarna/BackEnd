@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head.ejs") %>
+    <title>Plantilla medidor EJS</title>
+  </head>
+  <body>
+    <h1 style="color: blue"></h1>
+    <%- titulo %>
+    <span> <%=min+" " %></span>
+    <% const estilo = "width: 50%; height:40px"; %>
+    <span>
+      <meter value="<%" ="nivel%">min=<%min%> max=<%max%> style="<%=estilo%>"></meter>
+      <%=" " +max%></span
+    >
+  </body>
+</html>
