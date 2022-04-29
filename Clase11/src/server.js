@@ -15,13 +15,23 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
   //"connection" se ejecuta la primera vez que se abre una nueva conexión.
-  console.log("User conectado");
+  console.log(`User conectado. Socket ID: ${socket.id}`);
   //Se ejecuta el codigo dentro solo la primera vez que se ha abierto la conexión.
   socket.emit("mi mensaje", "Soy el servidor");
 
+  //Recibe los mensajes del cliente
   socket.on("msg-cliente", (data) => {
     console.log(data);
   });
+
+  socket.on("saludo", (data) => {
+    console.log(data);
+  });
+
+  //Envia este emit cada 3 segundos
+  setInterval(() => {
+    socket.emit("heartbeat", "estoy vivo");
+  }, 3000);
 });
 
 const server = httpServer.listen(8080, () => {
