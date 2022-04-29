@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
   //"connection" se ejecuta la primera vez que se abre una nueva conexión.
   console.log(`User conectado. Socket ID: ${socket.id}`);
-  //Se ejecuta el codigo dentro solo la primera vez que se ha abierto la conexión.
+  //Se lanzan los emit solo la primera vez que se ha abierto la conexión.
   socket.emit("mi mensaje", "Soy el servidor");
 
   //Recibe los mensajes del cliente
@@ -32,6 +32,9 @@ io.on("connection", (socket) => {
   setInterval(() => {
     socket.emit("heartbeat", "estoy vivo");
   }, 3000);
+
+  //Envío de datos a todos los sockets conectados al servidor
+  io.sockets.emit("mensaje-global", "Este msj lo reciben todos");
 });
 
 const server = httpServer.listen(8080, () => {
