@@ -1,24 +1,27 @@
-// hola
-const socket = io(); //Permite empezar a usar los sockets desde el cliente
+const socket = io();
 
-socket.on("mi mensaje", (data) => {
-  console.log(data);
-  socket.emit("msg-cliente", "Cliente: Recibí el mensaje");
-});
-
-function saludar() {
-  socket.emit("saludo", "Saludo desde el cliente");
+function mostrarMensajes(mensajes) {
+  const mensajesParaMostrar = mensajes.map(({ autor, fecha, texto }) => {
+    return `${fecha} - ${autor}: ${texto}`;
+  });
+  console.log(mensajesParaMostrar);
 }
 
-const botonSaludar = document.getElementById("botonSaludar");
+socket.on("mensajesActualizados", (mensajes) => {
+  mostrarMensajes(mensajes);
+});
+
+const botonSaludar = document.getElementById("botonEnviar");
 botonSaludar.addEventListener("click", (e) => {
-  saludar();
-});
-
-socket.on("heartbeat", () => {
-  console.log("Todo ok");
-});
-
-socket.on("mensaje-global", (data) => {
-  console.log(data);
+  const inputAutor = document.getElementById("inputAutor");
+  const inputMensaje = document.getElementById("inputMensaje");
+  if (inputMensaje.value && inputAutor.value) {
+    const mensaje = {
+      autor: inputAutor.value,
+      texto: inputMensaje.value,
+    };
+    socket.emit("nuevoMensaje", mensaje);
+  } else {
+    alert("Ingrese un autor y un mensaje");
+  }
 });

@@ -12,8 +12,19 @@ app.get("/", (req, res) => {
   res.send("OK");
 });
 
+//Lista donde se acumulan los msjs
+const arrayMensajes = [];
+
 io.on("connection", (socket) => {
   console.log(`User conectado. Socket ID: ${socket.id}`);
+  socket.emit("mensajesActualizados", arrayMensajes); //Envia el array guardado a nuevas conexiones
+
+  socket.on("nuevoMensaje", (mensaje) => {
+    mensaje.fecha = new Date().toLocaleString(); //Agrega fecha y hora a los mensajes
+    arrayMensajes.push(mensaje);
+    console.log(arrayMensajes);
+    io.sockets.emit("mensajesActualizados", arrayMensajes); //Envia el array a todos los sockets
+  });
 });
 
 const server = httpServer.listen(8080, () => {
