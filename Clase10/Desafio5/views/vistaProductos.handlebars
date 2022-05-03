@@ -1,0 +1,14 @@
+<div class="jumbotron">
+  <h1>Lista de productos</h1>
+  {{#if hayProductos}}
+    <ul>
+      {{#each productos}}
+        <li>item: {{this.nombreProd}}</li>
+      {{/each}}
+    </ul>
+  {{else}}
+    aca no hay nada para ver
+  {{/if}}
+</div>
+<br />
+<a href="cargaProductos">Ir a carga de productos</a>
