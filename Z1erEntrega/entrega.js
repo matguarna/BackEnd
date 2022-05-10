@@ -30,6 +30,19 @@ let productos = [
   { title: "Celular", price: 150, thumbnail: "url", id: "3" },
 ];
 
+class Producto {
+  constructor(id, nombre, descripcion, url, precio, stock) {
+    this.id = id;
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.url = url;
+    this.precio = precio;
+    this.stock = stock;
+  }
+}
+
+
+
 //Muestra la lista de productos
 router.get("/productos", (req, res) => {
   const allProducts = [];
@@ -111,8 +124,9 @@ router.delete("/productos/:id", (req, res) => {
 const carritosID = 0;
 
 class Carrito {
-  constructor(products) {
+  constructor(products, id) {
     this.products = products;
+    this.id = id;
   }
 
   idCarrito = carritosID;

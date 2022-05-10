@@ -12,6 +12,22 @@
       Producto: <input type="text" name="title" /> Precio: <input type="text" name="price" /> Url:<input type="text" name="url" />
       <button>Enviar</button>
     </form>
+
+    <div>
+      <button></button>
+      <button></button>
+    </div>
+
+    <div class="jumbotron">
+      <h1>Carga de productos</h1>
+      <form action="/api/productos" method="post">
+        <label for="nombreProd">Nombre</label>
+        <input type="text" name="nombreProd" />
+        <button type="submit">Cargar</button>
+      </form>
+    </div>
+    <button action="/api/productos" method="GET">Ver lista de productos</button>
+
     <script src="entrega.js"></script>
   </body>
 </html>
