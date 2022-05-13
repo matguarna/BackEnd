@@ -76,3 +76,4 @@ contenedorArchivos.getById(idProduct1); //ok
 //contenedorArchivos.deleteById(idProduct1); //ok
 //contenedorArchivos.getById(idProduct1); // ok
 //contenedorArchivos.deleteAll(); //ok
+
