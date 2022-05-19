@@ -4,5 +4,3 @@ console.log(array);
 
 const array2 = array.sort();
 console.log(array2);
-
-let a = a;
